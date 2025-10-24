@@ -14,7 +14,7 @@ namespace DodoPizza.Feaches.Basket.AddBasket
             { 
                 var response = await mediator.Send(reqest, cancellationToken);
                 return Results.Ok(response);
-            });
+            }).RequireAuthorization();
         }
     }
 }

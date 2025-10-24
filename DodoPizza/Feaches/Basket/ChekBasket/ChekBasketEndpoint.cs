@@ -15,7 +15,7 @@ namespace DodoPizza.Feaches.Basket.ChekBasket
                 var query = new ChekBasketQuery(id);
                 var response = await mediator.Send(query, cancellationToken);
                 return Results.Ok(response);
-            });
+            }).RequireAuthorization();
         }
     }
 }

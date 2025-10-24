@@ -6,9 +6,9 @@ namespace DodoPizza.Feaches.GetMenu
     {
         public static void GetMenuMap(IEndpointRouteBuilder app)
         {
-            app.MapGet("pizza/menu", async(
+            app.MapGet("pizza/menu", async (
                 IMediator mediator,
-                CancellationToken cancellationToken) => 
+                CancellationToken cancellationToken) =>
             {
                 var query = new GetMenuQuery();
                 var response = await mediator.Send(query, cancellationToken);

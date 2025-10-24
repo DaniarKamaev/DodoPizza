@@ -15,7 +15,7 @@ namespace DodoPizza.Feaches.Basket.DeleteBasket
                 var reqest = new DeleteBasketReqest(id);
                 var response = await mediator.Send(reqest, cancellation);
                 return Results.Ok(response);
-            });
+            }).RequireAuthorization();
         }
     }
 }
