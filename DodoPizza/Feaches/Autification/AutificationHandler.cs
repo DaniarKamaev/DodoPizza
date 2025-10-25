@@ -26,9 +26,9 @@ namespace DodoPizza.Feaches.Autification
 
 
             //MARK - Включить хеширование
-            //string password = request.password.GetHashCode().ToString();
+            string password = request.password.GetHashCode().ToString();
             var user = _db.Users
-                .FirstOrDefault(x => x.Login == request.userName && x.Password == request.password);
+                .FirstOrDefault(x => x.Login == request.userName && x.Password == password);
             //MARK - Включить хеширование
 
 

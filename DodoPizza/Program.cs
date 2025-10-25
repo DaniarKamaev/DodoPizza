@@ -3,6 +3,7 @@ using DodoPizza.Feaches.Autification;
 using DodoPizza.Feaches.Basket.AddBasket;
 using DodoPizza.Feaches.Basket.ChekBasket;
 using DodoPizza.Feaches.Basket.DeleteBasket;
+using DodoPizza.Feaches.Register;
 using DodoPizza.Feaches.GetMenu;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -67,5 +68,6 @@ AddBasketEndpoint.AddBasketMap(app);
 ChekBasketEndpoint.ChekBasketMap(app);
 DeleteBasketEndpoint.DeleteBasketMap(app);
 AutificationEndpoint.AutificationMap(app);
+RegisterEndpoint.RegisterMap(app);
 
 app.Run();
