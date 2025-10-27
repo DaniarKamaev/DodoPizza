@@ -23,18 +23,10 @@ namespace DodoPizza.Feaches.Autification
         public async Task<AutificationResponse> Handle(AutificationReqest request, CancellationToken cancellationToken)
         {
 
-
-
-            //MARK - Включить хеширование
             string password = request.password.GetHashCode().ToString();
             var user = _db.Users
                 .FirstOrDefault(x => x.Login == request.userName && x.Password == password);
-            //MARK - Включить хеширование
-
-
-
-
-
+            
             if (user == null) {
                 return new AutificationResponse(0, "Неверный пароль или логин", null);
             }
