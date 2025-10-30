@@ -22,17 +22,26 @@ namespace DodoPizza.Feaches.Autification
 
         public async Task<AutificationResponse> Handle(AutificationReqest request, CancellationToken cancellationToken)
         {
+;
+            var user = await _db.Users
+                .FirstOrDefaultAsync(x => x.Login == request.userName, cancellationToken);
 
-            string password = request.password.GetHashCode().ToString();
-            var user = _db.Users
-                .FirstOrDefault(x => x.Login == request.userName && x.Password == password);
-            
-            if (user == null) {
-                return new AutificationResponse(0, "Неверный пароль или логин", null);
+            if (user == null)
+            {
+                return new AutificationResponse(0, "Неверный логин", null);
             }
-            var token = GenerateJwtToken(user);
 
-            return new AutificationResponse(user.UserId, "Вход выполнен успешно", token);
+            string newHash = HashCreater.HashPassword(request.password);
+
+            bool isPasswordValid = HashCreater.VerifyPassword(request.password, user.Password);
+
+            if (isPasswordValid)
+            {
+                var token = GenerateJwtToken(user);
+                return new AutificationResponse(user.UserId, "Вход выполнен успешно", token);
+            }
+
+            return new AutificationResponse(0, "Неверный пароль", null);
         }
         private string GenerateJwtToken(User user)
         {

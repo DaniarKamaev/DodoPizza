@@ -95,11 +95,12 @@ namespace PizzaProject
 
                     if (response.IsSuccessStatusCode)
                     {
-                        // Обработка успешного ответа
                         var jsonAuthResponse = JsonSerializer.Deserialize<AuthResponse>(responseBody);
                         TokenManager.TokenManager.SaveToken(jsonAuthResponse.token);
                         TokenManager.TokenManager.SaveUserId(jsonAuthResponse.userId);
                         MessageBox.Show(jsonAuthResponse.message);
+                        var menuWindow = new MainWindow();
+                        menuWindow.Show();
                         this.Close();
                     }
                 }
@@ -112,7 +113,9 @@ namespace PizzaProject
 
         private void RegistButtonClick(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("reg in");
+            var regWindow = new RegistrationWindow();
+            this.Close();
+            regWindow.Show();
         }
         
     }

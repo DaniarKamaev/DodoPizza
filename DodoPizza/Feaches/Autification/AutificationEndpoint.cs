@@ -10,7 +10,7 @@ namespace DodoPizza.Feaches.Autification
             app.MapPost("pizza/authorization", async (
                 [FromBody] AutificationReqest reqest,
                 IMediator mediaror,
-                CancellationToken cancellationToken) => 
+                CancellationToken cancellationToken) =>
             {
                 var response = await mediaror.Send(reqest, cancellationToken);
 
@@ -22,10 +22,9 @@ namespace DodoPizza.Feaches.Autification
                     response.UserId,
                     response.Message,
                     response.Token
-                }); 
-            })
-            .WithName("Login")
-            .WithOpenApi();
+                });
+            });
+            
         }
     }
 }
