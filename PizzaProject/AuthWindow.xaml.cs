@@ -91,8 +91,6 @@ namespace PizzaProject
                     var response = await httpClient.PostAsync("http://localhost:8080/pizza/authorization", content);
                     var responseBody = await response.Content.ReadAsStringAsync();
 
-                    MessageBox.Show($"Ответ: {response.StatusCode}\n{responseBody}");
-
                     if (response.IsSuccessStatusCode)
                     {
                         var jsonAuthResponse = JsonSerializer.Deserialize<AuthResponse>(responseBody);

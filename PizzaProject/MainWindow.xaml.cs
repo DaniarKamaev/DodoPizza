@@ -90,7 +90,6 @@ namespace PizzaProject
                     client.DefaultRequestHeaders.Authorization =
                         new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TokenManager.TokenManager.Token);
 
-                    // Отправляем только menuId и count
                     var requestData = new
                     {
                         menuId = menuItem.Id,
@@ -126,7 +125,8 @@ namespace PizzaProject
         }
         public async void basket_Click(object sender, EventArgs e)
         {
-            ChekBasketWindow basketWindow = new ChekBasketWindow();
+            int userId = TokenManager.TokenManager.UserId;
+            ChekBasketWindow basketWindow = new ChekBasketWindow(userId, httpClient);
             this.Close();
             basketWindow.Show();
 
