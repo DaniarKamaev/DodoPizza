@@ -23,11 +23,11 @@
             <Button Content="Назад" Click="BackClick" 
                     Height="30" Margin="0,0,0,10" Padding="10,0"/>
             
-            <Button Content="Оформить заказ" 
-                    Height="45" 
-                    Background="Orange" 
-                    FontWeight="Bold"
-                    Padding="10,0"/>
+                <Button Content="Оформить заказ" 
+                        Height="45" 
+                        Background="Orange" 
+                        FontWeight="Bold"
+                        Padding="10,0"/>
         </StackPanel>
 
         <ListBox x:Name="ItemBox" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
@@ -67,6 +67,10 @@
                                       FontSize="10" 
                                       Foreground="Gray"
                                       Margin="0,5,0,0"/>
+
+                            <Button Content="Удалить"
+                                    Click="DeleteButton_Click"
+                                    Tag="{Binding BasketItemId}"/>
                         </StackPanel>
                     </Border>
                 </DataTemplate>

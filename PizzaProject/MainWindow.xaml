@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:PizzaProject"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="10,10,10,0">
+    <Grid Margin="10,10,130,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="0*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="menuListBox" Margin="10,10,112,10" Grid.RowSpan="2">
+        <ListBox x:Name="menuListBox" Margin="10,10,0,10" Grid.RowSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
@@ -24,6 +24,22 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Content="Корзина" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="39" Width="89" Click="basket_Click" Margin="0,10,10,0" Grid.RowSpan="2"/>
+        <StackPanel Grid.Row="1" Margin="0,0,-120,0">
+            <Button Content="Корзина"
+                Grid.Row="0" 
+                HorizontalAlignment="Right"
+                Height="43" Width="102"
+                Click="basket_Click"
+                Margin="0,10,10,0"
+                Grid.RowSpan="2"/>
+            <Button Content="Оформить заказ" 
+                Height="45" 
+                Background="Orange" 
+                FontWeight="Bold"
+                Padding="10,0" Width="112"
+                Margin="0,10,4,0"
+                HorizontalAlignment="Right"/>
+        </StackPanel>
+
     </Grid>
 </Window>

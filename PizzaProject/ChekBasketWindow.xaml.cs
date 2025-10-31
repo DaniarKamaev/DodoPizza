@@ -1,4 +1,6 @@
 ﻿using DodoPizza.Models;
+using PizzaProject.Models.Request;
+using PizzaProject.Models.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,6 +92,63 @@ namespace PizzaProject
             }
             MessageBox.Show("Хуй те");
             return null;
+        }
+
+        public async void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Button button = sender as Button;
+
+                if (button == null) return;
+                int buttonId = (int)button.Tag;
+                await DeleteItem(buttonId);
+                LoadBasketData();
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public async Task DeleteItem(int _id)
+        {
+            HttpClient client = new HttpClient();
+            try
+            {
+                client.DefaultRequestHeaders.Authorization =
+                        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", TokenManager.TokenManager.Token);
+                var item = new DeleteInBasket
+                {
+                    id = _id
+                };
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+
+                var json = JsonSerializer.Serialize(item, options);
+
+                var context = new StringContent(json , Encoding.UTF8, "application/json");
+
+                var reqest = await client.DeleteAsync($"http://localhost:8080/pizza/basket/delete/{_id}");
+                if (reqest.IsSuccessStatusCode)
+                {
+                    var responseBody = await reqest.Content.ReadAsStringAsync();
+                    var response = JsonSerializer.Deserialize<DeleteBasketResponse>(responseBody, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                    });
+
+                    MessageBox.Show(response?.massage ?? "Успешно удалено");
+                }
+
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

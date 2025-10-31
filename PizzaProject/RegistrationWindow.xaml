@@ -11,7 +11,7 @@
             <ColumnDefinition Width="270"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Source="C:\Users\dania\source\DodoPizza\PizzaProject\image.png" Grid.Column="0"/>
+        <Image x:Name="image" Source="C:\Users\dania\source\DodoPizza\PizzaProject\Images\image.png" Grid.Column="0"/>
         <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Vertical" Margin="130,0,166,0" Height="308">
             <TextBlock Text="Ваше имя" FontSize="23" FontWeight="Bold" Height="29" HorizontalAlignment="Center" Margin="0, 0, 0, 10"/>
             <TextBox Grid.Column="1" Width="130" HorizontalAlignment="Center" Margin="0, 0, 0, 30"  Text="{Binding UserName}"/>
